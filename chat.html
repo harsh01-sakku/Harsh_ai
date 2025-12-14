@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Harsh.ai – AI Chat Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="margin:0;background:#020617;color:white;font-family:Arial">
+
+<div style="background:#0f172a;padding:15px;text-align:center">
+  <h2>🤖 Harsh.ai</h2>
+  <p>Ask anything. Powered by AI.</p>
+</div>
+
+<div id="chat"
+style="padding:15px;height:70vh;overflow-y:auto">
+</div>
+
+<div style="position:fixed;bottom:0;width:100%;background:#0f172a;padding:10px">
+  <input id="input" placeholder="Type your message..."
+  style="width:75%;padding:10px">
+  <button onclick="send()"
+  style="padding:10px 15px">Send</button>
+</div>
+
+<script>
+function send(){
+  let input = document.getElementById("input");
+  let chat = document.getElementById("chat");
+
+  if(input.value==="") return;
+
+  chat.innerHTML +=
+    "<p><b>You:</b> " + input.value + "</p>";
+
+  chat.innerHTML +=
+    "<p><b>Harsh.ai:</b> AI response will come here</p>";
+
+  input.value = "";
+  chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
+</body>
+</html>
