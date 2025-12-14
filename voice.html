@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hey Harsh – Voice Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="background:#020617;color:white;text-align:center;font-family:Arial">
+
+<h1>🎙️ Hey Harsh</h1>
+<p>Your personal voice assistant</p>
+
+<button onclick="startListening()"
+style="padding:15px 30px;font-size:18px;">
+🎤 Speak
+</button>
+
+<p id="text"></p>
+<p id="reply"></p>
+
+<script>
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const recognition = new SpeechRecognition();
+recognition.lang = "en-IN";
+
+function speak(msg){
+  let speech = new SpeechSynthesisUtterance(msg);
+  speech.lang = "en-IN";
+  window.speechSynthesis.speak(speech);
+}
+
+function startListening(){
+  recognition.start();
+}
+
+recognition.onresult = function(event){
+  let command = event.results[0][0].transcript;
+  document.getElementById("text").innerText =
+    "You said: " + command;
+
+  let response = "Sorry, I did not understand.";
+
+  if(command.toLowerCase().includes("hello")){
+    response = "Hello Harsh, how can I help you?";
+  }
+  else if(command.toLowerCase().includes("website")){
+    response = "I can help you build a website.";
+  }
+  else if(command.toLowerCase().includes("services")){
+    response = "Opening services page.";
+    window.location.href = "services.html";
+  }
+
+  document.getElementById("reply").innerText =
+    "Harsh.ai: " + response;
+
+  speak(response);
+};
+</script>
+
+</body>
+</html>
